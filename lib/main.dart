@@ -69,7 +69,25 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         title: const Text('FriendlyChat'),
       ),
-      body: _buildTextComposer(),
+      body: Column(
+        children: [
+          Flexible(
+            child: ListView.builder(
+              itemBuilder: (_, index) => _messages[index],
+              padding: const EdgeInsets.all(8.0),
+              reverse: true,
+              itemCount: _messages.length,
+            ),
+          ),
+          const Divider(height: 1.0),
+          Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
+            ),
+            child: _buildTextComposer(),
+          )
+        ],
+      ),
     );
   }
 
